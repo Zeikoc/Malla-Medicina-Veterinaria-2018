@@ -1,1 +1,25 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Malla Medicina Veterinaria</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Malla Medicina Veterinaria</h1>
+  <div class="semestre">
+    <h2>1° Semestre</h2>
+    <div class="ramos">
+      <div class="ramo" id="introduccion" onclick="toggleRamo('introduccion')"
+        data-prerreq="">Introducción a las ciencias veterinarias</div>
+      <div class="ramo" id="matematicas" onclick="toggleRamo('matematicas')"
+        data-prerreq="">Matemáticas</div>
+      <div class="ramo" id="zoologia" onclick="toggleRamo('zoologia')"
+        data-prerreq="">Zoología</div>
+      <div class="ramo" id="bioquimica1" onclick="toggleRamo('bioquimica1')"
+        data-prerreq="">Química Biológica 1</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
