@@ -2,24 +2,289 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Medicina Veterinaria</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malla Curricular - Medicina Veterinaria</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Malla Medicina Veterinaria</h1>
-  <div class="semestre">
-    <h2>1° Semestre</h2>
-    <div class="ramos">
-      <div class="ramo" id="introduccion" onclick="toggleRamo('introduccion')"
-        data-prerreq="">Introducción a las ciencias veterinarias</div>
-      <div class="ramo" id="matematicas" onclick="toggleRamo('matematicas')"
-        data-prerreq="">Matemáticas</div>
-      <div class="ramo" id="zoologia" onclick="toggleRamo('zoologia')"
-        data-prerreq="">Zoología</div>
-      <div class="ramo" id="bioquimica1" onclick="toggleRamo('bioquimica1')"
-        data-prerreq="">Química Biológica 1</div>
+  <header>
+    <h1>Malla Curricular - Medicina Veterinaria</h1>
+    <div class="progress-info">
+      <span id="progress-text">Ramos aprobados: 0/48</span>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-color disponible"></div>
+          <span>Disponible</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color aprobado"></div>
+          <span>Aprobado</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color bloqueado"></div>
+          <span>Bloqueado</span>
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <main class="malla-container">
+    <!-- Primer Semestre -->
+    <div class="semestre">
+      <h2>1° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="introduccion" onclick="toggleRamo('introduccion')" data-prerreq="">
+          <h3>Introducción a las Ciencias Veterinarias</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+        <div class="ramo" id="matematicas" onclick="toggleRamo('matematicas')" data-prerreq="">
+          <h3>Matemáticas</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="zoologia" onclick="toggleRamo('zoologia')" data-prerreq="">
+          <h3>Zoología General</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="quimica-general" onclick="toggleRamo('quimica-general')" data-prerreq="">
+          <h3>Química General</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="biologia-celular" onclick="toggleRamo('biologia-celular')" data-prerreq="">
+          <h3>Biología Celular</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Segundo Semestre -->
+    <div class="semestre">
+      <h2>2° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="anatomia1" onclick="toggleRamo('anatomia1')" data-prerreq="zoologia,biologia-celular">
+          <h3>Anatomía Veterinaria I</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="bioquimica" onclick="toggleRamo('bioquimica')" data-prerreq="quimica-general">
+          <h3>Bioquímica</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="fisica" onclick="toggleRamo('fisica')" data-prerreq="matematicas">
+          <h3>Física Aplicada</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="botanica" onclick="toggleRamo('botanica')" data-prerreq="biologia-celular">
+          <h3>Botánica</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+        <div class="ramo" id="estadistica" onclick="toggleRamo('estadistica')" data-prerreq="matematicas">
+          <h3>Estadística</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tercer Semestre -->
+    <div class="semestre">
+      <h2>3° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="anatomia2" onclick="toggleRamo('anatomia2')" data-prerreq="anatomia1">
+          <h3>Anatomía Veterinaria II</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="fisiologia1" onclick="toggleRamo('fisiologia1')" data-prerreq="anatomia1,bioquimica">
+          <h3>Fisiología Veterinaria I</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="microbiologia" onclick="toggleRamo('microbiologia')" data-prerreq="bioquimica">
+          <h3>Microbiología</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="genetica" onclick="toggleRamo('genetica')" data-prerreq="biologia-celular,estadistica">
+          <h3>Genética</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="nutricion1" onclick="toggleRamo('nutricion1')" data-prerreq="bioquimica,botanica">
+          <h3>Nutrición Animal I</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuarto Semestre -->
+    <div class="semestre">
+      <h2>4° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="fisiologia2" onclick="toggleRamo('fisiologia2')" data-prerreq="fisiologia1">
+          <h3>Fisiología Veterinaria II</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="patologia1" onclick="toggleRamo('patologia1')" data-prerreq="anatomia2,microbiologia">
+          <h3>Patología General</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="farmacologia1" onclick="toggleRamo('farmacologia1')" data-prerreq="fisiologia1,bioquimica">
+          <h3>Farmacología I</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="inmunologia" onclick="toggleRamo('inmunologia')" data-prerreq="microbiologia,genetica">
+          <h3>Inmunología</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="nutricion2" onclick="toggleRamo('nutricion2')" data-prerreq="nutricion1,fisiologia1">
+          <h3>Nutrición Animal II</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quinto Semestre -->
+    <div class="semestre">
+      <h2>5° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="patologia2" onclick="toggleRamo('patologia2')" data-prerreq="patologia1">
+          <h3>Patología Sistémica</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="farmacologia2" onclick="toggleRamo('farmacologia2')" data-prerreq="farmacologia1">
+          <h3>Farmacología II</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="medicina-interna1" onclick="toggleRamo('medicina-interna1')" data-prerreq="patologia1,farmacologia1">
+          <h3>Medicina Interna I</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="reproduccion" onclick="toggleRamo('reproduccion')" data-prerreq="fisiologia2,inmunologia">
+          <h3>Reproducción Animal</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="epidemiologia" onclick="toggleRamo('epidemiologia')" data-prerreq="estadistica,microbiologia">
+          <h3>Epidemiología</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sexto Semestre -->
+    <div class="semestre">
+      <h2>6° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="medicina-interna2" onclick="toggleRamo('medicina-interna2')" data-prerreq="medicina-interna1,patologia2">
+          <h3>Medicina Interna II</h3>
+          <span class="creditos">6 créditos</span>
+        </div>
+        <div class="ramo" id="cirugia1" onclick="toggleRamo('cirugia1')" data-prerreq="anatomia2,farmacologia2">
+          <h3>Cirugía Veterinaria I</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="diagnostico-imagen" onclick="toggleRamo('diagnostico-imagen')" data-prerreq="fisica,anatomia2">
+          <h3>Diagnóstico por Imagen</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="medicina-preventiva" onclick="toggleRamo('medicina-preventiva')" data-prerreq="epidemiologia,inmunologia">
+          <h3>Medicina Preventiva</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="zootecnia" onclick="toggleRamo('zootecnia')" data-prerreq="genetica,nutricion2">
+          <h3>Zootecnia</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Séptimo Semestre -->
+    <div class="semestre">
+      <h2>7° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="cirugia2" onclick="toggleRamo('cirugia2')" data-prerreq="cirugia1">
+          <h3>Cirugía Veterinaria II</h3>
+          <span class="creditos">7 créditos</span>
+        </div>
+        <div class="ramo" id="clinica-menores" onclick="toggleRamo('clinica-menores')" data-prerreq="medicina-interna2,cirugia1">
+          <h3>Clínica de Pequeños Animales</h3>
+          <span class="creditos">8 créditos</span>
+        </div>
+        <div class="ramo" id="clinica-mayores" onclick="toggleRamo('clinica-mayores')" data-prerreq="medicina-interna2,zootecnia">
+          <h3>Clínica de Grandes Animales</h3>
+          <span class="creditos">8 créditos</span>
+        </div>
+        <div class="ramo" id="salud-publica" onclick="toggleRamo('salud-publica')" data-prerreq="medicina-preventiva,epidemiologia">
+          <h3>Salud Pública Veterinaria</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Octavo Semestre -->
+    <div class="semestre">
+      <h2>8° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="clinica-avanzada1" onclick="toggleRamo('clinica-avanzada1')" data-prerreq="clinica-menores,cirugia2">
+          <h3>Clínica Avanzada I</h3>
+          <span class="creditos">10 créditos</span>
+        </div>
+        <div class="ramo" id="clinica-avanzada2" onclick="toggleRamo('clinica-avanzada2')" data-prerreq="clinica-mayores,reproduccion">
+          <h3>Clínica Avanzada II</h3>
+          <span class="creditos">10 créditos</span>
+        </div>
+        <div class="ramo" id="toxicologia" onclick="toggleRamo('toxicologia')" data-prerreq="farmacologia2,patologia2">
+          <h3>Toxicología</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+        <div class="ramo" id="medicina-legal" onclick="toggleRamo('medicina-legal')" data-prerreq="salud-publica">
+          <h3>Medicina Legal Veterinaria</h3>
+          <span class="creditos">3 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Noveno Semestre -->
+    <div class="semestre">
+      <h2>9° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="internado1" onclick="toggleRamo('internado1')" data-prerreq="clinica-avanzada1,clinica-avanzada2">
+          <h3>Internado Clínico I</h3>
+          <span class="creditos">15 créditos</span>
+        </div>
+        <div class="ramo" id="electivo1" onclick="toggleRamo('electivo1')" data-prerreq="clinica-avanzada1">
+          <h3>Electivo Profesional I</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="investigacion" onclick="toggleRamo('investigacion')" data-prerreq="estadistica,epidemiologia">
+          <h3>Metodología de Investigación</h3>
+          <span class="creditos">4 créditos</span>
+        </div>
+        <div class="ramo" id="etica" onclick="toggleRamo('etica')" data-prerreq="medicina-legal">
+          <h3>Ética Profesional</h3>
+          <span class="creditos">3 créditos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Décimo Semestre -->
+    <div class="semestre">
+      <h2>10° Semestre</h2>
+      <div class="ramos">
+        <div class="ramo" id="internado2" onclick="toggleRamo('internado2')" data-prerreq="internado1">
+          <h3>Internado Clínico II</h3>
+          <span class="creditos">15 créditos</span>
+        </div>
+        <div class="ramo" id="electivo2" onclick="toggleRamo('electivo2')" data-prerreq="electivo1">
+          <h3>Electivo Profesional II</h3>
+          <span class="creditos">5 créditos</span>
+        </div>
+        <div class="ramo" id="tesis" onclick="toggleRamo('tesis')" data-prerreq="investigacion,internado1">
+          <h3>Trabajo de Título</h3>
+          <span class="creditos">8 créditos</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <button id="reset-btn" onclick="resetProgress()">Reiniciar Progreso</button>
+    <button id="export-btn" onclick="exportProgress()">Exportar Progreso</button>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>

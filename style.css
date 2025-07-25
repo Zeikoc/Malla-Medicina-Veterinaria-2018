@@ -1,45 +1,338 @@
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
   padding: 20px;
-  background-color: #f8f8f8;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
-h1 {
+header h1 {
   text-align: center;
+  color: #2c3e50;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  font-weight: 300;
 }
 
-.semestre {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #e4e4e4;
-  border-radius: 10px;
-}
-
-.ramos {
+.progress-info {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+#progress-text {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.legend {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid #333;
+}
+
+.legend-color.disponible {
+  background-color: #90EE90; /* Verde claro */
+}
+
+.legend-color.aprobado {
+  background-color: #8A2BE2; /* Morado */
+}
+
+.legend-color.bloqueado {
+  background-color: #A9A9A9; /* Gris */
+}
+
+/* Contenedor principal */
+.malla-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Semestres */
+.semestre {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  margin-bottom: 30px;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.semestre h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.8em;
+  font-weight: 600;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #3498db;
+}
+
+/* Grid de ramos */
+.ramos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+/* Estilos de ramos */
 .ramo {
-  background-color: purple;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  width: 250px;
+  background-color: #90EE90; /* Verde claro por defecto (disponible) */
+  color: #2c3e50;
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 300px;
   cursor: pointer;
   text-align: center;
   user-select: none;
-  transition: 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
 }
 
+.ramo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.ramo:hover::before {
+  left: 100%;
+}
+
+.ramo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.ramo h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.creditos {
+  font-size: 0.9em;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+/* Estado aprobado - Morado con tachado */
 .ramo.aprobado {
-  background-color: #888;
-  text-decoration: line-through;
+  background-color: #8A2BE2; /* Morado */
+  color: white;
+  position: relative;
 }
 
+.ramo.aprobado h3 {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.ramo.aprobado::after {
+  content: '✓';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Estado bloqueado - Gris */
 .ramo.bloqueado {
-  background-color: #ccc;
+  background-color: #A9A9A9; /* Gris */
   color: #666;
   cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.ramo.bloqueado::after {
+  content: '🔒';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2em;
+}
+
+.ramo.bloqueado:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+}
+
+footer button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 0 10px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+footer button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2em;
+  }
+  
+  .progress-info {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .legend {
+    justify-content: center;
+  }
+  
+  .ramos {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .ramo {
+    max-width: none;
+  }
+  
+  .semestre {
+    padding: 20px 15px;
+  }
+  
+  footer button {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.5em;
+  }
+  
+  .semestre h2 {
+    font-size: 1.4em;
+  }
+  
+  .ramo h3 {
+    font-size: 1em;
+  }
+  
+  .legend-item {
+    font-size: 0.9em;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.semestre {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Efectos de hover mejorados */
+.ramo:not(.bloqueado):hover {
+  border-color: #3498db;
+}
+
+.ramo.aprobado:hover {
+  border-color: #fff;
+}
+
+/* Indicador de progreso visual */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: #ecf0f1;
+  border-radius: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+  border-radius: 3px;
+  transition: width 0.5s ease;
+  width: 0%;
 }
