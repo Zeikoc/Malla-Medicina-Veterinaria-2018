@@ -1,45 +1,35 @@
-body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f8f8f8;
+const aprobados = new Set(JSON.parse(localStorage.getItem("aprobados") || "[]"));
+
+function toggleRamo(id) {
+  const el = document.getElementById(id);
+  if (el.classList.contains("bloqueado")) return;
+
+  if (aprobados.has(id)) {
+    aprobados.delete(id);
+  } else {
+    aprobados.add(id);
+  }
+
+  localStorage.setItem("aprobados", JSON.stringify([...aprobados]));
+  actualizarEstado();
 }
 
-h1 {
-  text-align: center;
+function actualizarEstado() {
+  document.querySelectorAll(".ramo").forEach(ramo => {
+    const id = ramo.id;
+    const prerreqs = ramo.dataset.prerreq.split(',').filter(Boolean);
+    const cumplido = prerreqs.every(p => aprobados.has(p));
+
+    if (aprobados.has(id)) {
+      ramo.classList.add("aprobado");
+      ramo.classList.remove("bloqueado");
+    } else if (prerreqs.length && !cumplido) {
+      ramo.classList.remove("aprobado");
+      ramo.classList.add("bloqueado");
+    } else {
+      ramo.classList.remove("aprobado", "bloqueado");
+    }
+  });
 }
 
-.semestre {
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #e4e4e4;
-  border-radius: 10px;
-}
-
-.ramos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.ramo {
-  background-color: purple;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  width: 250px;
-  cursor: pointer;
-  text-align: center;
-  user-select: none;
-  transition: 0.3s;
-}
-
-.ramo.aprobado {
-  background-color: #888;
-  text-decoration: line-through;
-}
-
-.ramo.bloqueado {
-  background-color: #ccc;
-  color: #666;
-  cursor: not-allowed;
-}
+actualizarEstado();
